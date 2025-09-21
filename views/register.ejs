@@ -3,19 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Create Account</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1 class="h1">Log In</h1>
+  <h1 class="h1">Create Account</h1>
   <div class="form">
-    <form action="/login" method="post">
+    <form action="/create" method="post">
+      <input type="text" name="name" placeholder="Enter your name" id="name" required>
       <input type="email" name="email" placeholder="Enter your email" id="email" required>
       <input type="text" name="password" placeholder="Enter your password" id="password" required>
-      <button type="submit" id="Create">Log In</button>
+      <button type="submit" id="Create">Create Account</button>
     </form>
   </div>
-    <p class="auth-switch">Don't have an account? <a href="/">Register here</a></p>
+    <p class="auth-switch">Already have an account? <a href="/login">Login here</a></p>
 </div>
+
 </body>
 </html>

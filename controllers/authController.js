@@ -22,7 +22,7 @@ exports.register = async (req, res)=>{
 
     res.cookie("token", token)
 
-    res.send(newuser)
+    res.redirect('/profile')
 }
 
 exports.login = async (req, res)=>{
@@ -44,7 +44,12 @@ exports.login = async (req, res)=>{
     res.redirect('/profile')
 }
 
+exports.logout = async(req, res)=>{
+    res.clearCookie("token");
+    res.redirect('/login')
+}
+
 exports.profile = async(req, res)=>{
-    const user = await User.findOne({email: req.user.email}).select('-password');
-    res.json(user)
+    const user =  await User.findOne({ email : req.user.email }).populate("posts");
+    res.render("profile", { user: user });
 }

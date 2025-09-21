@@ -12,8 +12,7 @@ exports.createpost = async (req, res) => {
         })
     user.posts.push(post._id)
     await user.save();
-    const populatedUser = await User.findById(user._id).populate("posts");
-    res.json(populatedUser.posts)
+    res.redirect('/profile')
 }
 
 exports.editpost = async (req, res) => {
@@ -26,12 +25,20 @@ exports.editpost = async (req, res) => {
         { new: true }
     );
 
-    res.json(post)
+    res.redirect('/profile')
+}
+
+exports.editpage = async (req, res)=>{
+    const {id} = req.params
+
+    const post = await Post.findById(id)
+
+    res.render("edit", {post:post})
 }
 
 exports.deletepost = async (req, res) => {
     const { id } = req.params
 
     await Post.findByIdAndDelete(id);
-    res.json({ message: "Post deleted successfully" });
+    res.redirect('/profile')
 }
