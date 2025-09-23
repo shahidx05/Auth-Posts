@@ -1,5 +1,6 @@
 const express = require("express");
-const { register, login, profile , logout} = require("../controllers/authController");
+const upload = require("../config/multerconfig")
+const { register, login, profile , logout, profileupload} = require("../controllers/authController");
 const authMiddleware = require("../middlewares/authMiddleware");
 const router = express.Router();
 
@@ -16,6 +17,13 @@ router.post("/login", login);
 
 router.get("/profile", authMiddleware, profile);
 
+router.get("/profile/upload", (req, res)=>{
+  res.render("profileupload")
+})
+
+router.post("/profile/upload",authMiddleware,upload.single("dp"), profileupload)
+
 router.get("/logout", logout)
+
 
 module.exports = router;

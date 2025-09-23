@@ -53,3 +53,10 @@ exports.profile = async(req, res)=>{
     const user =  await User.findOne({ email : req.user.email }).populate("posts");
     res.render("profile", { user: user });
 }
+
+exports.profileupload = async(req, res)=>{
+    const user = await User.findOne({email: req.user.email})
+    user.profilepic = req.file.filename
+    await user.save()
+    res.redirect("/profile")
+}
