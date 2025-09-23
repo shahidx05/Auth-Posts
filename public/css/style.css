@@ -54,6 +54,11 @@ body {
     margin-top: 30px;
 }
 
+.auth-switch a {
+  color: #4969f5;
+  text-decoration: none;
+}
+
 
 .h3{
   color: #ff0000;
